@@ -1,0 +1,54 @@
+package com.example.mydevboard.service;
+
+import com.example.mydevboard.domain.dto.PostDetailResponseDto;
+import com.example.mydevboard.domain.dto.PostRequestDto;
+import com.example.mydevboard.domain.dto.PostSimpleResponseDto;
+import com.example.mydevboard.domain.post.Post;
+import com.example.mydevboard.domain.post.PostRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@RequiredArgsConstructor
+@Service
+public class PostService {
+    private final PostRepository postRepository;
+
+    // Create Post
+    @Transactional
+    public Long save(PostRequestDto requestDto){
+        Post post = new Post(requestDto);
+        return postRepository.save(post).getId();
+    }
+
+    // Delete Post
+    @Transactional
+    public void delete(Long id){
+        postRepository.deleteById(id);
+    }
+
+    // Read Post List
+    @Transactional(readOnly=true) // 트랜잭션 범위는 유지하되 조회기능만 남겨서 조회속도가 개선
+    public List<PostSimpleResponseDto> findAll(){
+        return postRepository.findAll().stream()
+                .map(post -> new PostSimpleResponseDto(post))
+                .collect(Collectors.toList());
+        // postsRepository.findAll()는 List<Post>를 반환하는데
+        // 이를 List<PostSimpleResponseDto>로 바꿔서 반환
+    }
+
+    // Read One Post By Id
+    @Transactional(readOnly=true) // 트랜잭션 범위는 유지하되 조회기능만 남겨서 조회속도가 개선
+    public PostDetailResponseDto findById(Long id){
+        Post entity = postRepository.findById(id).orElseThrow(
+                ()->new IllegalArgumentException("해당 게시물이 없습니다. id = "+id));
+        return new PostDetailResponseDto(entity);
+    }
+
+
+
+}
