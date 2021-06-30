@@ -17,6 +17,9 @@ public class Post extends Timestamped {
     private Long id;
 
     @Column(length = 500, nullable = false)
+    private String writer;
+
+    @Column(length = 500, nullable = false)
     private String title;
 
     @Column(columnDefinition = "TEXT", nullable = false)
@@ -25,6 +28,7 @@ public class Post extends Timestamped {
     public Post(PostRequestDto requestDto){
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
+        this.writer = requestDto.getWriter();
     }
 
     public void update(PostRequestDto requestDto) {

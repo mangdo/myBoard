@@ -9,12 +9,12 @@ import java.time.LocalDateTime;
 public class PostSimpleResponseDto {
     private Long id;
     private String title;
-    private LocalDateTime createdAt;
+    private String writer;
 
     public PostSimpleResponseDto(Post post){
         this.id = post.getId();
         this.title = post.getTitle();
-        this.createdAt = post.getCreatedAt();
+        this.writer = post.getWriter();
 
     }
 }

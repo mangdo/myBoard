@@ -84,7 +84,7 @@
                         <td><a href="/detail.html?id=${post.id}" >${post.title}</a>
 
                         </td>
-                        <td class="date">${post.createdAt.split("T")[0]}</td>
+                        <td class="date">${post.writer}</td>
                     </tr>`
         }
         $(document).ready(function () {
@@ -117,7 +117,7 @@
                         <tr>
                         <th>번호</th>
                         <th>제목</th>
-                        <th>날짜</th>
+                        <th>작성자</th>
                     </tr>
                     </thead>
 

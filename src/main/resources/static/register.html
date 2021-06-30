@@ -57,7 +57,8 @@
       function registerPost(){
         post = {
           'title': $('#title').val(),
-          'content': $('#content').val()
+          'content': $('#content').val(),
+          'writer': $('#writer').val()
         }
 
         $.ajax({
@@ -89,10 +90,18 @@
     <div class="register-box">
       <h5 class="title is-5">게시글 등록</h5>
       <div class="register-form">
+
         <div class="field">
           <label class="label">제목</label>
           <div class="control">
             <input class="input" type="text" placeholder="제목을 작성해주세요" id="title">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">작성자</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="작성자명을 작성해주세요" id="writer">
           </div>
         </div>
 
