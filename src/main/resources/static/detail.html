@@ -65,22 +65,8 @@
 
     <script>
         let current_id = document.location.href.split("?id=")[1];
-        // 게시물 목록 조회
-        function findOne(){
-            $.ajax({
-                type: 'GET',
-                url: `/api/posts/${current_id}`,
-                success: function(response){
-                    $('#title').text(response.title);
-                    $('#content').text(response.content);
 
-                },
-                error: function(e){
-                    alert("게시글을 조회할 수 없습니다.");
-                }
-            });
-        }
-        // 게시물 목록 조회
+        // 게시물 조회
         function findOne(){
             $.ajax({
                 type: 'GET',
@@ -109,6 +95,9 @@
                 }
             });
         }
+        function updatePost(){
+            window.location.href=`/update.html?id=${current_id}`;
+        }
         $(document).ready(function () {
             findOne()
         })
@@ -136,6 +125,11 @@
                         <p class="control">
                             <a class="button is-light" href="/">
                                 목록
+                            </a>
+                        </p>
+                        <p class="control">
+                            <a class="button is-light del" onclick="updatePost()">
+                                수정
                             </a>
                         </p>
                         <p class="control">

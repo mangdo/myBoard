@@ -49,6 +49,14 @@ public class PostService {
         return new PostDetailResponseDto(entity);
     }
 
-
+    // Update Post By Id
+    @Transactional
+    public Long update(Long id, PostRequestDto requestDto){
+        Post product = postRepository.findById(id).orElseThrow(
+                () -> new NullPointerException("해당 아이디가 존재하지 않습니다.")
+        );
+        product.update(requestDto);
+        return id;
+    }
 
 }
