@@ -1,5 +1,5 @@
 # My DevBoard :computer:
-> https://startspring.shop/   
+> http://startspring.shop/   
 > 개발 관련 글들을 모아서 관리하는 게시판입니다.
 
 <br>
@@ -51,3 +51,4 @@
 
 ## 5. 회고
 
+https://doing7.tistory.com/102
