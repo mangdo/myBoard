@@ -34,7 +34,7 @@ public class PostService {
     // Read Post List
     @Transactional(readOnly=true) // 트랜잭션 범위는 유지하되 조회기능만 남겨서 조회속도가 개선
     public List<PostSimpleResponseDto> findAll(){
-        return postRepository.findAll().stream()
+        return postRepository.findAllByOrderByCreatedAtDesc().stream()
                 .map(post -> new PostSimpleResponseDto(post))
                 .collect(Collectors.toList());
         // postsRepository.findAll()는 List<Post>를 반환하는데
