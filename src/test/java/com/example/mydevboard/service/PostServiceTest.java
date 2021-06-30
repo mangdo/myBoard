@@ -31,16 +31,16 @@ public class PostServiceTest {
 
 
     @Test
-    @DisplayName("저장하고 읽기")
+    @DisplayName("게시물 저장하고 읽기")
     public void saveAndRead(){
         // given
-        PostRequestDto requestDto = new PostRequestDto("테스트게시글1", "테스트본문1");
+        PostRequestDto requestDto = new PostRequestDto("테스트게시글1", "테스트본문1","작성자");
         Post post = new Post(requestDto);
-        PostRequestDto requestDto2 = new PostRequestDto("테스트게시글2", "테스트본문2");
+        PostRequestDto requestDto2 = new PostRequestDto("테스트게시글2", "테스트본문2", "작성자");
         Post post2 = new Post(requestDto2);
 
         // when
-        when(postRepository.findAll()).thenReturn(Stream.of(post, post2).collect(Collectors.toList()));
+        when(postRepository.findAllByOrderByCreatedAtDesc()).thenReturn(Stream.of(post, post2).collect(Collectors.toList()));
         List<PostSimpleResponseDto> postsList = postService.findAll();
 
         // then

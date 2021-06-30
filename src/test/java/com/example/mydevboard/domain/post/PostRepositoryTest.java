@@ -23,7 +23,8 @@ public class PostRepositoryTest {
         // given
         String title = "테스트 게시글1";
         String content = "테스트 본문1";
-        PostRequestDto requestDto = new PostRequestDto(title, content);
+        String writer = "작성자1";
+        PostRequestDto requestDto = new PostRequestDto(title, content, writer);
         Post post = new Post(requestDto);
         postRepository.save(post);
 
